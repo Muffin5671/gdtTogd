@@ -58,12 +58,14 @@
 
           gdtObjects.split(";")
           .forEach(obj => {
-            let id = obj.split(",")[0];
-            let x = obj.split(",")[1];
-            let y = obj.split(",")[2];
-            let dir = obj.split(",")[3];
+            if (!(obj == "")) {
+              let id = obj.split(",")[0];
+              let x = obj.split(",")[1];
+              let y = obj.split(",")[2];
+              let dir = obj.split(",")[3];
 
-            gd = `${gd}1,${id},2,${x},3,${y},6,${dir};`;
+              gd = `${gd}1,${id},2,${x},3,${y},6,${dir};`;
+            }
           });
 
           if ($("#GMD").checked) {
