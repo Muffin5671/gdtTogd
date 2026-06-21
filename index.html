@@ -69,7 +69,11 @@
           if ($("#GMD").checked) {
           
           } else {
-            saveAs(gd, "converted.txt");
+            let file = new File(
+              [gd],
+              "converted.txt"
+            );
+            saveAs(file);
           }
         } catch (e) {
           alert(`There was an error converting the level:\n\n${e}`);
