@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Geometry Dash Testing level to Geometry Dash level</title>
-    <link href="stylesheet.css" rel="stylesheet">
+    <link href="css/stylesheet.css" rel="stylesheet">
     <script src="js/jquery-4.0.0.min.js"></script>
     <script src="js/FileSaver.min.js"></script>
   </head>
@@ -15,22 +15,10 @@
     </noscript>
 
     <textarea id="gdtLevel" placeholder="Insert GDT level here" style="
-      width: 350px;
-      height: 150px;
+      width: 400px;
+      height: 200px;
       margin-bottom: 20px;
     "></textarea>
-    <br>
-
-    <input type="color" id="bgCol" style="
-      margin-bottom: 10px;
-    ">
-    <label for="bgCol">Background Color</label>
-    <br>
-
-    <input type="color" id="grndCol" style="
-      margin-bottom: 20px;
-    ">
-    <label for="grndCol">Ground Color</label>
     <br>
 
     <input type="checkbox" id="GMD" style="
@@ -43,73 +31,6 @@
       padding: 8px 16px;
     ">Convert</button>
 
-    <script>
-      $("#convert")[0].addEventListener("click", () => {
-        if (!($("#gdtLevel")[0].value == "")) {
-          try {
-            let bgR = parseInt($("#bgCol")[0].value.substring(1, 3), 16);
-            let bgG = parseInt($("#bgCol")[0].value.substring(3, 5), 16);
-            let bgB = parseInt($("#bgCol")[0].value.substring(5, 7), 16);
-            let grndR = parseInt($("#grndCol")[0].value.substring(1, 3), 16);
-            let grndG = parseInt($("#grndCol")[0].value.substring(3, 5), 16);
-            let grndB = parseInt($("#grndCol")[0].value.substring(5, 7), 16);
-
-            let gd = `kS38,1_${bgR}_2_${bgG}_3_${bgB}_11_255_12_255_13_255_4_-1_6_1000_7_1_15_1_18_0_8_1|1_${grndR}_2_${grndG}_3_${grndB}_11_255_12_255_13_255_4_-1_6_1001_7_1_15_1_18_0_8_1|1_0_2_102_3_255_11_255_12_255_13_255_4_-1_6_1009_7_1_15_1_18_0_8_1|1_255_2_255_3_255_11_255_12_255_13_255_4_-1_6_1002_5_1_7_1_15_1_18_0_8_1|1_255_2_255_3_255_11_255_12_255_13_255_4_-1_6_1005_5_1_7_1_15_1_18_0_8_1|1_255_2_255_3_255_11_255_12_255_13_255_4_-1_6_1006_5_1_7_1_15_1_18_0_8_1|,kA13,0,kA15,0,kA16,0,kA14,,kA6,0,kA7,0,kA17,0,kA18,0,kS39,0,kA2,0,kA3,0,kA8,0,kA4,4,kA9,0,kA10,0,kA11,0;`;
-            let gdt = $("#gdtLevel")[0].value;
-            let gdtObjects = gdt.split("~")[1];
-
-            gdtObjects.split(";")
-            .forEach(obj => {
-              if (!(obj == "")) {
-                let id = obj.split(",")[0];
-                let x = obj.split(",")[1];
-                let y = obj.split(",")[2];
-                let dir = obj.split(",")[3];
-
-                gd = `${gd}1,${id},2,${x},3,${y},6,${dir};`;
-              }
-            });
-
-            let gdtBgID = Number(gdt.split("~")[0].split("_")[0]);
-            let gdBgID = 0;
-            switch (gdtBgID) {
-              case 1:
-                gdBgID = 0;
-                break;
-              case 2:
-                gdBgID = 6;
-                break;
-              case 3:
-                gdBgID = 10;
-                break;
-              default:
-                gdBgID = 9;
-                break; 
-            }
-
-            if ($("#GMD")[0].checked) {
-
-              let gmd = `<d>\n</d>`;
-              let file = new File(
-                [gmd],
-                "converted.gmd"
-              );
-              saveAs(file);
-
-            } else {
-
-              let file = new File(
-                [gd],
-                "converted.txt"
-              );
-              saveAs(file);
-
-            }
-          } catch (e) {
-            alert(`There was an error converting the level:\n\n${e}`);
-          }
-        }
-      });
-    </script>
+    <script src="js/script.js"></script>
   </body>
 </html>
